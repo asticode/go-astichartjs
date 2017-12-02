@@ -3,6 +3,7 @@ package astichartjs
 // Chart types
 const (
 	ChartTypeLine = "line"
+	ChartTypePie  = "pie"
 )
 
 // Chart axis positions
@@ -37,22 +38,23 @@ const (
 
 // Chart represents a chart
 type Chart struct {
-	Data    Data    `json:"data"`
-	Options Options `json:"options"`
-	Type    string  `json:"type"`
+	Data    *Data    `json:"data,omitempty"`
+	Options *Options `json:"options,omitempty"`
+	Type    string   `json:"type"`
 }
 
 // Data represents data
 type Data struct {
-	Datasets []Dataset `json:"datasets"`
+	Datasets []Dataset `json:"datasets,omitempty"`
+	Labels   []string  `json:"labels,omitempty"`
 }
 
 // Dataset represents a dataset
 type Dataset struct {
-	BackgroundColor string      `json:"backgroundColor"`
-	BorderColor     string      `json:"borderColor"`
-	Data            []DataPoint `json:"data"`
-	Label           string      `json:"label"`
+	BackgroundColor string        `json:"backgroundColor,omitempty"`
+	BorderColor     string        `json:"borderColor,omitempty"`
+	Data            []interface{} `json:"data,omitempty"`
+	Label           string        `json:"label,omitempty"`
 }
 
 // DataPoint represents a data point
@@ -63,32 +65,32 @@ type DataPoint struct {
 
 // Options represents options
 type Options struct {
-	Responsive bool   `json:"responsive"`
-	Scales     Scales `json:"scales"`
-	Title      Title  `json:"title"`
+	Responsive *bool   `json:"responsive,omitempty"`
+	Scales     *Scales `json:"scales,omitempty"`
+	Title      *Title  `json:"title,omitempty"`
 }
 
 // Scales represents scales options
 type Scales struct {
-	XAxes []Axis `json:"xAxes"`
-	YAxes []Axis `json:"yAxes"`
+	XAxes []Axis `json:"xAxes,omitempty"`
+	YAxes []Axis `json:"yAxes,omitempty"`
 }
 
 // Axis represents an axis options
 type Axis struct {
-	Position   string     `json:"position,omitempty"`
-	ScaleLabel ScaleLabel `json:"scaleLabel"`
-	Type       string     `json:"type,omitempty"`
+	Position   string      `json:"position,omitempty,omitempty"`
+	ScaleLabel *ScaleLabel `json:"scaleLabel,omitempty"`
+	Type       string      `json:"type,omitempty,omitempty"`
 }
 
 // ScaleLabel represents a scale label options
 type ScaleLabel struct {
-	Display     bool   `json:"display"`
-	LabelString string `json:"labelString"`
+	Display     *bool  `json:"display,omitempty"`
+	LabelString string `json:"labelString,omitempty"`
 }
 
 // Title represents a title options
 type Title struct {
-	Display bool   `json:"display"`
-	Text    string `json:"text"`
+	Display *bool  `json:"display,omitempty"`
+	Text    string `json:"text,omitempty"`
 }
