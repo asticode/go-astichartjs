@@ -20,7 +20,7 @@ const (
 const (
 	ChartBackgroundColorBlue   = "rgba(54, 162, 235, 0.2)"
 	ChartBackgroundColorGreen  = "rgba(75, 192, 192, 0.2)"
-	ChartBackgroundColororange = "rgba(255, 159, 64, 0.2)"
+	ChartBackgroundColorOrange = "rgba(255, 159, 64, 0.2)"
 	ChartBackgroundColorPurple = "rgba(153, 102, 255, 0.2)"
 	ChartBackgroundColorRed    = "rgba(255, 99, 132, 0.2)"
 	ChartBackgroundColorYellow = "rgba(255, 206, 86, 0.2)"
@@ -51,8 +51,8 @@ type Data struct {
 
 // Dataset represents a dataset
 type Dataset struct {
-	BackgroundColor string        `json:"backgroundColor,omitempty"`
-	BorderColor     string        `json:"borderColor,omitempty"`
+	BackgroundColor interface{}   `json:"backgroundColor,omitempty"`
+	BorderColor     interface{}   `json:"borderColor,omitempty"`
 	Data            []interface{} `json:"data,omitempty"`
 	Label           string        `json:"label,omitempty"`
 }
