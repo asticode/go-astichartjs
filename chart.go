@@ -2,9 +2,9 @@ package astichartjs
 
 // Chart types
 const (
-	ChartTypePie     = "pie"
 	ChartTypeBar     = "bar"
 	ChartTypeLine    = "line"
+	ChartTypePie     = "pie"
 	ChartTypeScatter = "scatter"
 )
 
@@ -76,15 +76,15 @@ type TimedDataPoint struct {
 
 // Options represents options
 type Options struct {
-	Responsive                  *bool      `json:"responsive,omitempty"`
+	Animation                   *Animation `json:"animation,omitempty"`
+	Elements                    *Elements  `json:"elements,omitempty"`
+	Hover                       *Hover     `json:"hover,omitempty"`
+	Legend                      *Legend    `json:"legend,omitempty"`
 	MaintainAspectRatio         *bool      `json:"maintainAspectRatio,omitempty"`
+	Responsive                  *bool      `json:"responsive,omitempty"`
 	ResponsiveAnimationDuration *int       `json:"responsiveAnimationDuration,omitempty"`
 	Scales                      *Scales    `json:"scales,omitempty"`
 	Title                       *Title     `json:"title,omitempty"`
-	Legend                      *Legend    `json:"legend,omitempty"`
-	Elements                    *Elements  `json:"elements,omitempty"`
-	Animation                   *Animation `json:"animation,omitempty"`
-	Hover                       *Hover     `json:"hover,omitempty"`
 }
 
 // Scales represents scales options
@@ -95,13 +95,13 @@ type Scales struct {
 
 // Axis represents an axis options
 type Axis struct {
+	Display    *bool       `json:"display,omitempty"`
 	Position   string      `json:"position,omitempty"`
 	ScaleLabel *ScaleLabel `json:"scaleLabel,omitempty"`
-	Type       string      `json:"type,omitempty,"`
-	Display    *bool       `json:"display,omitempty"`
-	TimeType   *TimeType   `json:"time,omitempty"`
 	Stacked    *bool       `json:"stacked,omitempty"`
 	Ticks      *Ticks      `json:"ticks,omitempty"`
+	TimeType   *TimeType   `json:"time,omitempty"`
+	Type       string      `json:"type,omitempty,"`
 }
 
 // Ticks represents an ticks options
@@ -159,6 +159,6 @@ type Elements struct {
 
 // Line ...
 type Line struct {
-	Tension *float64 `json:"tension,omitempty"`
 	Fill    *bool    `json:"fill,omitempty"`
+	Tension *float64 `json:"tension,omitempty"`
 }
