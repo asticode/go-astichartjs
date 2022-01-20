@@ -162,3 +162,4 @@ type Line struct {
 	Fill    *bool    `json:"fill,omitempty"`
 	Tension *float64 `json:"tension,omitempty"`
 }
+
