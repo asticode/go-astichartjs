@@ -2,8 +2,10 @@ package astichartjs
 
 // Chart types
 const (
-	ChartTypeLine = "line"
-	ChartTypePie  = "pie"
+	ChartTypePie     = "pie"
+	ChartTypeBar     = "bar"
+	ChartTypeLine    = "line"
+	ChartTypeScatter = "scatter"
 )
 
 // Chart axis positions
@@ -14,6 +16,7 @@ const (
 // Chart axis type
 const (
 	ChartAxisTypesLinear = "linear"
+	ChartAxisTypesTime   = "time"
 )
 
 // Chart background colors
@@ -55,6 +58,8 @@ type Dataset struct {
 	BorderColor     interface{}   `json:"borderColor,omitempty"`
 	Data            []interface{} `json:"data,omitempty"`
 	Label           string        `json:"label,omitempty"`
+	PointRadius     string        `json:"pointRadius,omitempty"`
+	Stack           string        `json:"stack,omitempty"`
 }
 
 // DataPoint represents a data point
@@ -63,11 +68,23 @@ type DataPoint struct {
 	Y float64 `json:"y"`
 }
 
+// TimedDataPoint represents a data point
+type TimedDataPoint struct {
+	T string  `json:"t"`
+	Y float64 `json:"y"`
+}
+
 // Options represents options
 type Options struct {
-	Responsive *bool   `json:"responsive,omitempty"`
-	Scales     *Scales `json:"scales,omitempty"`
-	Title      *Title  `json:"title,omitempty"`
+	Responsive                  *bool      `json:"responsive,omitempty"`
+	MaintainAspectRatio         *bool      `json:"maintainAspectRatio,omitempty"`
+	ResponsiveAnimationDuration *int       `json:"responsiveAnimationDuration,omitempty"`
+	Scales                      *Scales    `json:"scales,omitempty"`
+	Title                       *Title     `json:"title,omitempty"`
+	Legend                      *Legend    `json:"legend,omitempty"`
+	Elements                    *Elements  `json:"elements,omitempty"`
+	Animation                   *Animation `json:"animation,omitempty"`
+	Hover                       *Hover     `json:"hover,omitempty"`
 }
 
 // Scales represents scales options
@@ -78,9 +95,28 @@ type Scales struct {
 
 // Axis represents an axis options
 type Axis struct {
-	Position   string      `json:"position,omitempty,omitempty"`
+	Position   string      `json:"position,omitempty"`
 	ScaleLabel *ScaleLabel `json:"scaleLabel,omitempty"`
-	Type       string      `json:"type,omitempty,omitempty"`
+	Type       string      `json:"type,omitempty,"`
+	Display    *bool       `json:"display,omitempty"`
+	TimeType   *TimeType   `json:"time,omitempty"`
+	Stacked    *bool       `json:"stacked,omitempty"`
+	Ticks      *Ticks      `json:"ticks,omitempty"`
+}
+
+// Ticks represents an ticks options
+type Ticks struct {
+	FontSize *int `json:"fontSize,omitempty"`
+}
+
+// TimeType ...
+type TimeType struct {
+	DisplayFormats *TimeDisplayFormats `json:"displayFormats,omitempty"`
+}
+
+// TimeDisplayFormats ...
+type TimeDisplayFormats struct {
+	TimeDisplayFormatMillisecond string `json:"millisecond,omitempty"`
 }
 
 // ScaleLabel represents a scale label options
@@ -93,4 +129,36 @@ type ScaleLabel struct {
 type Title struct {
 	Display *bool  `json:"display,omitempty"`
 	Text    string `json:"text,omitempty"`
+}
+
+// Legend represents a legend options
+type Legend struct {
+	Display *bool         `json:"display,omitempty"`
+	Labels  *LegendLabels `json:"labels,omitempty"`
+}
+
+// LegendLabels represents a legend options
+type LegendLabels struct {
+	FontSize *int `json:"fontSize,omitempty"`
+}
+
+// Animation ...
+type Animation struct {
+	Duration *int `json:"duration,omitempty"`
+}
+
+// Hover ...
+type Hover struct {
+	AnimationDuration *int `json:"animationDuration,omitempty"`
+}
+
+// Elements ...
+type Elements struct {
+	Line *Line `json:"line,omitempty"`
+}
+
+// Line ...
+type Line struct {
+	Tension *float64 `json:"tension,omitempty"`
+	Fill    *bool    `json:"fill,omitempty"`
 }
